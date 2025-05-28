@@ -16,8 +16,7 @@ public class GetActivityListById
     {
         public async Task<Activity> Handle(Query request, CancellationToken cancellationToken)
         {
-            var activity = await context.Activities.FindAsync([request.id], cancellationToken);
-            if (activity == null) throw new Exception("Not fouund");
+            var activity = await context.Activities.FindAsync([request.id], cancellationToken) ?? throw new Exception("Not fouund");
             return activity;
         }
     }
